@@ -9,29 +9,34 @@ export default createStore({
   },
   getters: {},
   mutations: {
-    setInitialState() {
-      this.state.isPopup = false
-      this.state.activeCity = ''
-      this.state.isSend = false
+    setInitialState(state) {
+      state.isPopup = false
+      state.activeCity = ''
+      state.isSend = false
     },
     setActiveCity(state, payload) {
-      this.state.activeCity = payload
+      if (state.isPopup === false)
+        state.isPopup = true
+      state.activeCity = payload
     },
     setPopup(state, payload) {
-      this.state.isPopup = payload
+      state.isPopup = payload
     },
-    sending(state,payload) {
-      this.state.isSend = payload
+    close(state) {
+      state.isPopup = false
+      state.isSend = false
+      state.activeCity = ''
     }
   },
   actions: {
-    actionActiveCity({ state,commit }, payload) {
-      if(state.isPopup === false)
+    actionActiveCity({ state, commit }, payload) {
+      if (state.isPopup === false)
         state.isPopup = true
       commit('setActiveCity', payload)
     },
-    actionSending({commit}) {
-      commit('sending',true)
+    actionSending({ state }, payload) {
+      state.isSend = payload
+      state.activeCity = ''
     }
   }
 })
