@@ -31,12 +31,12 @@ export default createStore({
   actions: {
     actionActiveCity({ state, commit }, payload) {
       if (state.isPopup === false)
-        state.isPopup = true
+        commit('isPopup', true)
       commit('setActiveCity', payload)
     },
-    actionSending({ state }, payload) {
+    actionSending({ state, commit }, payload) {
       state.isSend = payload
-      state.activeCity = ''
+      commit('setActiveCity', '')
     }
   }
 })
