@@ -22,7 +22,7 @@ export default createStore({
     setPopup(state, payload) {
       state.isPopup = payload
     },
-    close(state) {
+    resetStore(state) {
       state.isPopup = false
       state.isSend = false
       state.activeCity = ''

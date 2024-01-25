@@ -13,14 +13,14 @@ export default {
     ...mapState(['isPopup'])
   },
   methods: {
-    ...mapMutations(['setPopup', 'setInitialState', 'close'])
+    ...mapMutations(['setPopup', 'setInitialState', 'resetStore'])
   }
 }
 </script>
 
 <template>
   <div
-    @click.self="close(false)"
+    @click.self="resetStore(false)"
     class="min-h-screen flex justify-center items-center">
     <CityPopup v-if="isPopup"></CityPopup>
     <div v-else
